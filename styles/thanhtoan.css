@@ -1,0 +1,55 @@
+.phanchinh{
+    width: 100%;
+}
+.phanchinh>div{
+    text-align: center;
+    padding-bottom: 50px;
+    margin-top: 50px;
+    border-bottom: 1px solid;
+}
+.hinhthuc{
+    font-size: 30px;
+}
+#tieude{
+    padding: 20px;
+    font-size: 25px;
+}
+#ndTienMat{
+    text-align: justify;
+    font-size: 17px;
+}
+#ndCK{
+    font-size: 17px;
+}
+#textNganHang{
+    font-size: 17px;
+}
+.itemNganhang{
+    display: flex;
+    text-align: justify;
+}
+.itemNganhang div{
+    margin-right: 30px;
+}
+@media (max-width: 600px){
+    .itemNganhang{
+        display: block;
+        text-align: center;
+    }
+    .phanchinh{
+        padding: 20px;
+    }
+    .hinhthuc{
+        font-size: 25px;
+    }
+    #tieude{
+        
+        font-size: 20px;
+    }
+}
+
+@media (min-width: 601px) and (max-width: 1280px) {
+	.phanchinh{
+        padding: 30px;
+    }
+}

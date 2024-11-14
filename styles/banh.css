@@ -1,0 +1,268 @@
+* {box-sizing:border-box}
+.slideshow-container {
+    max-width: 1000px;
+    position: relative;
+    margin: auto;
+}
+.banhbanh{
+    margin-top: 70px;
+    margin-bottom: 70px;
+}
+.mySlides {
+    display: none;
+}
+
+.prev,
+.next {
+    cursor: pointer;
+    position: absolute;
+    top: 50%;
+    width: auto;
+    margin-top: -22px;
+    padding: 16px;
+    color: white;
+    font-weight: bold;
+    font-size: 18px;
+    transition: 0.6s ease;
+    border-radius: 0 3px 3px 0;
+    user-select: none;
+}
+
+.next {
+    right: 0;
+    border-radius: 3px 0 0 3px;
+}
+
+.prev:hover,
+.next:hover {
+    background-color: rgba(0, 0, 0, 0.8);
+}
+.dots-container {
+    text-align: center;
+    padding: 10px 0;
+    position: absolute;
+    bottom: 10px;
+    width: 100%;
+    bottom: 0;
+}
+.dot {
+    cursor: pointer;
+    height: 15px;
+    width: 15px;
+    margin: 0 2px;
+    background-color: #bbb;
+    border-radius: 50%;
+    display: inline-block;
+    transition: background-color 0.6s ease;
+    /*ease là một hàm chuyển đổi mặc định, làm cho chuyển đổi bắt đầu chậm và kết thúc mềm mại*/
+}
+
+.active,
+.dot:hover {
+    background-color: #717171;
+}
+.fade{
+    animation-name: fade;
+    animation-duration: 1.5s;
+}
+
+/*@keyframes là một at-rule trong CSS được sử dụng để định nghĩa các bước của một hoạt động chuyển động trong CSS. */
+@keyframes fade{
+    from {opacity: .4}
+    to {opacity: 1}
+}
+
+.banhup {
+    display: flex;
+}
+
+.thongtinbanh {
+    margin-left: 20px;
+}
+
+.thongtinbanh h3 {
+    font-size: 25px;
+    color: rgb(232, 143, 27);
+}
+
+.thongtinbanh p {
+    font-size: 20px;
+    line-height: 1.5;
+}
+
+.addGH {
+    display: flex;
+}
+
+.quantity {
+    display: flex;
+    align-items: center;
+}
+
+.pro-qty {
+    display: flex;
+    align-items: center;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+.qty-btn {
+    background-color: #f8f8f8;
+    border: none;
+    padding: 10px 15px;
+    cursor: pointer;
+    font-size: 20px;
+    user-select: none;/*nội dung bên trong phần tử sẽ không thể được chọn bằng cách sử dụng chuột hoặc bàn phím*/
+}
+
+.qty-btn:hover {
+    background-color: #e0e0e0;
+}
+
+#quantity {
+    width: 50px;
+    text-align: center;
+    border: none;
+    outline: none;
+    padding: 10px 0;
+    background-color: #fff;
+    cursor: default;/*con trỏ sẽ hiển thị hình mũi tên.*/
+}
+
+.btnthemGH {
+    margin: 30px;
+}
+
+.btnthemGH input {
+    padding: 10px 15px;
+    background-color: rgb(232, 143, 27);
+    font-size: 20px;
+}
+
+.btnthemGH input:hover {
+    background-color: #dfaa19;
+    border: solid 2px #dfc0c0;
+}
+
+.motabanh {
+    margin-top: 40px;
+}
+
+#mota {
+    position: relative;
+    font-size: 20px;
+    color: #e24c0c;
+}
+
+#mota::after {
+    content: '';
+    display: block;
+    width: 100%;
+    height: 0.5px;
+    background-color: #e24c0c;
+    position: absolute;
+    left: 0;
+    bottom: -3px;
+}
+
+.motachinh {
+    margin-left: 30px;
+    line-height: 2;
+}
+
+#khac a {
+    text-decoration: none;
+    color: #ba8b0b;
+}
+
+
+@media (max-width: 600px) {
+    
+    .banhup {
+        flex-direction: column;
+        align-items: center;
+    }
+    .thongtinbanh {
+        margin-left: 0;
+        text-align: center;
+    }
+    .thongtinbanh h3 {
+        font-size: 20px;
+    }
+    .thongtinbanh p {
+        font-size: 16px;
+    }
+    .pro-qty {
+        align-items: center;
+    }
+    .addGH{
+
+        justify-content: center;
+    }
+    .qty-btn {
+        padding: 5px 10px;
+    }
+    #quantity {
+        width: 40px;
+        padding: 5px 0;
+    }
+    .btnthemGH input {
+        padding: 8px 10px;
+        font-size: 18px;
+    }
+    .motabanh {
+        margin-top: 20px;
+    }
+    #mota {
+        font-size: 18px;
+    }
+    .motachinh {
+        margin-left: 10px;
+        line-height: 1.5;
+    }
+}
+
+/* Responsive cho màn hình có chiều rộng từ 601px đến 1280px */
+@media (min-width: 601px) and (max-width: 1280px) {
+    
+    .banhup {
+        flex-direction: row;
+        align-items: flex-start;
+    }
+    .thongtinbanh {
+        margin-left: 10px;
+        text-align: left;
+    }
+    .thongtinbanh h3 {
+        font-size: 22px;
+    }
+    .thongtinbanh p {
+        font-size: 16px;
+    }
+    .pro-qty {
+        flex-direction: row;
+        align-items: center;
+    }
+    .qty-btn {
+        padding: 8px 12px;
+    }
+    #quantity {
+        width: 45px;
+        padding: 8px 0;
+    }
+    .btnthemGH input {
+        padding: 9px 12px;
+        font-size: 19px;
+    }
+    .motabanh {
+        margin-top: 30px;
+    }
+    #mota {
+        font-size: 19px;
+    }
+    .motachinh {
+        margin-left: 20px;
+        line-height: 1.8;
+    }
+}
