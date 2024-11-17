@@ -57,7 +57,7 @@ if (isset($_GET['category_id'])) {
                     ?>
 
                     <div class="product-item">
-                        <a onclick="dsBanh()" href="banh.php?product_id=<?php echo $product_id; ?>">
+                        <a href="banh.php?product_id=<?php echo $product_id; ?>">
                             <img src="<?php echo $image_url; ?>" alt="Hình ảnh <?php echo $product_name; ?>" />
                             <h2><?php echo $product_name; ?></h2>
                             <p><?php echo $product_price . " đ"; ?></p>
