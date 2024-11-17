@@ -65,6 +65,6 @@ function giamsl() {
 }
 
 function giaohang(){
-    window.location.href = "main.html?page=giaohang.html";
+    window.location.href = "index.php?page=giaohang.php";
 }
 

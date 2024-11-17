@@ -18,6 +18,10 @@ function toggleMenu() {
     var menu = document.querySelector('.mainmenu');/*Lấy phần tử menu.*/
     menu.classList.toggle('active'); /*Thêm hoặc xóa lớp "active" khỏi phần tử menu, khiến cho menu mở hoặc đóng.*/
 }
+function closeMenu() {
+    const menu = document.querySelector('.mainmenu');
+    menu.classList.remove('active');
+}
 
 
 function loadContent(url) {
@@ -51,7 +55,7 @@ function loadNewsContent() {
 
     // Mở yêu cầu GET đến tệp "tintuc.html"
     /*Mở một yêu cầu HTTP với phương thức GET đến một URL cụ thể. Tham số thứ ba là một boolean, đặt là true để yêu cầu được gửi bất đồng bộ.*/
-    xhr.open('GET', 'tintuc.html', true);
+    xhr.open('GET', 'tintuc.php', true);
 
     // Xử lý sự kiện khi yêu cầu được gửi và nhận được phản hồi
     xhr.onload = function () {
@@ -67,7 +71,7 @@ function loadNewsContent() {
                 console.error('Không tìm thấy phần tử có lớp "main_content"');
             }
         } else {
-            console.error('Không thể tải tintuc.html');
+            console.error('Không thể tải tintuc.php');
         }
     };
 
@@ -85,7 +89,7 @@ function loadContentThanhToan() {
     var xhr = new XMLHttpRequest();
 
     // Mở yêu cầu GET đến tệp "tintuc.html"
-    xhr.open('GET', 'thanhtoan.html', true);
+    xhr.open('GET', 'thanhtoan.php', true);
 
     // Xử lý sự kiện khi yêu cầu được gửi và nhận được phản hồi
     xhr.onload = function () {
@@ -101,7 +105,7 @@ function loadContentThanhToan() {
                 console.error('Không tìm thấy phần tử có lớp "main_content"');
             }
         } else {
-            console.error('Không thể tải thanhtoan.html');
+            console.error('Không thể tải thanhtoan.php');
         }
     };
 
@@ -117,7 +121,7 @@ function loadContentDangNhap() {
     var xhr = new XMLHttpRequest();
 
     // Mở yêu cầu GET đến tệp "tintuc.html"
-    xhr.open('GET', 'dangnhap.html', true);
+    xhr.open('GET', 'dangnhap.php', true);
 
     // Xử lý sự kiện khi yêu cầu được gửi và nhận được phản hồi
     xhr.onload = function () {
@@ -133,7 +137,7 @@ function loadContentDangNhap() {
                 console.error('Không tìm thấy phần tử có lớp "main_content"');
             }
         } else {
-            console.error('Không thể tải dangnhap.html');
+            console.error('Không thể tải dangnhap.php');
         }
     };
 
@@ -149,7 +153,7 @@ function loadContentGiaoHang() {
     var xhr = new XMLHttpRequest();
 
     // Mở yêu cầu GET đến tệp "tintuc.html"
-    xhr.open('GET', 'giaohang.html', true);
+    xhr.open('GET', 'giaohang.php', true);
 
     // Xử lý sự kiện khi yêu cầu được gửi và nhận được phản hồi
     xhr.onload = function () {
@@ -165,7 +169,7 @@ function loadContentGiaoHang() {
                 console.error('Không tìm thấy phần tử có lớp "main_content"');
             }
         } else {
-            console.error('Không thể tải giaohang.html');
+            console.error('Không thể tải giaohang.php');
         }
     };
 
@@ -177,27 +181,30 @@ function loadContentGiaoHang() {
     // Gửi yêu cầu
     xhr.send();
 }
-function loadContentBanh() {
+function loadContentBanh(productId) {
     var xhr = new XMLHttpRequest();
 
-    // Mở yêu cầu GET đến tệp "tintuc.html"
-    xhr.open('GET', 'banh.html', true);
+    // Mở yêu cầu GET đến tệp "banh.php" với product_id
+    xhr.open('GET', 'banh.php?product_id=' + productId, true);
 
     // Xử lý sự kiện khi yêu cầu được gửi và nhận được phản hồi
     xhr.onload = function () {
         if (xhr.status >= 200 && xhr.status < 400) {
-            // Lấy nội dung của tintuc.html từ phản hồi
+            // Lấy nội dung của phản hồi từ máy chủ
             var newsContent = xhr.responseText;
 
             // Thay thế nội dung của phần tử có lớp "main_content" bằng nội dung mới
             var mainContentElement = document.querySelector('.main_content');
             if (mainContentElement) {
                 mainContentElement.innerHTML = newsContent;
+
+                // Gọi lại hàm để hiển thị slide ảnh
+                showSlides(slideIndex); // Hoặc gọi lại các hàm slide tương ứng
             } else {
                 console.error('Không tìm thấy phần tử có lớp "main_content"');
             }
         } else {
-            console.error('Không thể tải banh.html');
+            console.error('Không thể tải banh.php');
         }
     };
 
@@ -209,70 +216,97 @@ function loadContentBanh() {
     // Gửi yêu cầu
     xhr.send();
 }
+
+function loadContentdsBanh(cateId) {
+    var xhr = new XMLHttpRequest();
+
+    // Mở yêu cầu GET đến tệp "banh.php" với product_id
+    xhr.open('GET', 'dsBanh.php?category_id=' + cateId, true);
+
+    // Xử lý sự kiện khi yêu cầu được gửi và nhận được phản hồi
+    xhr.onload = function () {
+        if (xhr.status >= 200 && xhr.status < 400) {
+            // Lấy nội dung của phản hồi từ máy chủ
+            var newsContent = xhr.responseText;
+
+            // Thay thế nội dung của phần tử có lớp "main_content" bằng nội dung mới
+            var mainContentElement = document.querySelector('.main_content');
+            if (mainContentElement) {
+                mainContentElement.innerHTML = newsContent;
+            } else {
+                console.error('Không tìm thấy phần tử có lớp "main_content"');
+            }
+        } else {
+            console.error('Không thể tải dsBanh.php');
+        }
+    };
+
+    // Xử lý lỗi khi không thể gửi yêu cầu
+    xhr.onerror = function () {
+        console.error('Lỗi kết nối');
+    };
+
+    // Gửi yêu cầu
+    xhr.send();
+}
+
 
 //một sự kiện được kích hoạt khi DOM của trang web đã được tải và phân tích hoàn toàn.
 document.addEventListener("DOMContentLoaded", function () {
     var params = new URLSearchParams(window.location.search);
-            var page = params.get('page');
-            if (page) {
-                loadContent(page);
-            }
-    // Gán sự kiện click cho liên kết "TIN TỨC"
-    var tinTucLink1 = document.querySelector('a[href="tintuc.html"]');//Lấy thẻ a có thuộc tính href bằng "tintuc.html".
+    var page = params.get('page');
+    if (page) {
+        loadContent(page);
+    }
+
+    var tinTucLink1 = document.querySelector('a[href="tintuc.php"]');
     if (tinTucLink1) {
-        tinTucLink1.addEventListener('click', function (event) {//Gắn một sự kiện "click" vào liên kết này, để khi được nhấp vào, 
-            //sẽ gọi hàm xử lý sự kiện được định nghĩa bên trong.
-
-            // Ngăn chặn hành vi mặc định của liên kết, không điều hướng đến trang mới.
+        tinTucLink1.addEventListener('click', function (event) {
             event.preventDefault();
-
-            // Gọi hàm loadNewsContent() khi người dùng click vào liên kết "TIN TỨC"
-            //Gọi hàm tải nội dung mới tương ứng với liên kết đó.
             loadNewsContent();
         });
     }
-    var tinTucLink2 = document.querySelector('a[href="thanhtoan.html"]');
+
+    var tinTucLink2 = document.querySelector('a[href="thanhtoan.php"]');
     if (tinTucLink2) {
         tinTucLink2.addEventListener('click', function (event) {
-            // Ngăn chặn hành vi mặc định của liên kết
             event.preventDefault();
-
-            // Gọi hàm loadNewsContent() khi người dùng click vào liên kết "TIN TỨC"
             loadContentThanhToan();
         });
     }
-    var tinTucLink3 = document.querySelector('a[href="dangnhap.html"]');
+
+    var tinTucLink3 = document.querySelector('a[href="dangnhap.php"]');
     if (tinTucLink3) {
         tinTucLink3.addEventListener('click', function (event) {
-            // Ngăn chặn hành vi mặc định của liên kết
             event.preventDefault();
-
-            // Gọi hàm loadNewsContent() khi người dùng click vào liên kết "TIN TỨC"
             loadContentDangNhap();
         });
     }
-    var tinTucLink4 = document.querySelector('a[href="giaohang.html"]');
+
+    var tinTucLink4 = document.querySelector('a[href="giaohang.php"]');
     if (tinTucLink4) {
         tinTucLink4.addEventListener('click', function (event) {
-            // Ngăn chặn hành vi mặc định của liên kết
             event.preventDefault();
-
-            // Gọi hàm loadNewsContent() khi người dùng click vào liên kết "TIN TỨC"
             loadContentGiaoHang();
         });
     }
-    var tinTucLink5 = document.querySelector('a[href="banh.html"]');
-    if (tinTucLink5) {
-        tinTucLink5.addEventListener('click', function (event) {
-            // Ngăn chặn hành vi mặc định của liên kết
+
+    // Chỉnh sửa lại cho các liên kết sản phẩm và danh sách bánh
+    var productLinks = document.querySelectorAll('a[href^="banh.php?product_id="]');
+    productLinks.forEach(function(link) {
+        link.addEventListener('click', function(event) {
             event.preventDefault();
-
-            // Gọi hàm loadNewsContent() khi người dùng click vào liên kết "TIN TỨC"
-            loadContentBanh();
-
+            var productId = new URL(link.href).searchParams.get('product_id');
+            loadContentBanh(productId);
         });
-    }
+    });
+
+    var dsBanhlink = document.querySelectorAll('a[href^="dsBanh.php?category_id="]');
+    dsBanhlink.forEach(function(link) {
+        link.addEventListener('click', function(event) {
+            event.preventDefault();
+            var cateId = new URL(link.href).searchParams.get('category_id');
+            loadContentdsBanh(cateId);
+        });
+    });
 });
-
-
-

@@ -16,9 +16,13 @@ function validateForm() {
     }
     if (isValid) {
         alert('Đăng nhập thành công!');
-        window.location.href = 'main.html';
+        window.location.href = 'index.php';
     }
 }
+function dangki(){
+    window.location.href = "index.php?page=dangki.php";
+}
+
 function validateEmail(email) {
     var emailRegex = /\S+@\S+\.\S+/;
     return emailRegex.test(email);
