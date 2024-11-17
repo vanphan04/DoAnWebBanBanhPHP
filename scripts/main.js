@@ -51,7 +51,7 @@ function loadNewsContent() {
 
     // Mở yêu cầu GET đến tệp "tintuc.html"
     /*Mở một yêu cầu HTTP với phương thức GET đến một URL cụ thể. Tham số thứ ba là một boolean, đặt là true để yêu cầu được gửi bất đồng bộ.*/
-    xhr.open('GET', 'tintuc.html', true);
+    xhr.open('GET', 'tintuc.php', true);
 
     // Xử lý sự kiện khi yêu cầu được gửi và nhận được phản hồi
     xhr.onload = function () {
@@ -67,7 +67,7 @@ function loadNewsContent() {
                 console.error('Không tìm thấy phần tử có lớp "main_content"');
             }
         } else {
-            console.error('Không thể tải tintuc.html');
+            console.error('Không thể tải tintuc.php');
         }
     };
 
@@ -85,7 +85,7 @@ function loadContentThanhToan() {
     var xhr = new XMLHttpRequest();
 
     // Mở yêu cầu GET đến tệp "tintuc.html"
-    xhr.open('GET', 'thanhtoan.html', true);
+    xhr.open('GET', 'thanhtoan.php', true);
 
     // Xử lý sự kiện khi yêu cầu được gửi và nhận được phản hồi
     xhr.onload = function () {
@@ -101,7 +101,7 @@ function loadContentThanhToan() {
                 console.error('Không tìm thấy phần tử có lớp "main_content"');
             }
         } else {
-            console.error('Không thể tải thanhtoan.html');
+            console.error('Không thể tải thanhtoan.php');
         }
     };
 
@@ -117,7 +117,7 @@ function loadContentDangNhap() {
     var xhr = new XMLHttpRequest();
 
     // Mở yêu cầu GET đến tệp "tintuc.html"
-    xhr.open('GET', 'dangnhap.html', true);
+    xhr.open('GET', 'dangnhap.php', true);
 
     // Xử lý sự kiện khi yêu cầu được gửi và nhận được phản hồi
     xhr.onload = function () {
@@ -133,7 +133,7 @@ function loadContentDangNhap() {
                 console.error('Không tìm thấy phần tử có lớp "main_content"');
             }
         } else {
-            console.error('Không thể tải dangnhap.html');
+            console.error('Không thể tải dangnhap.php');
         }
     };
 
@@ -149,7 +149,7 @@ function loadContentGiaoHang() {
     var xhr = new XMLHttpRequest();
 
     // Mở yêu cầu GET đến tệp "tintuc.html"
-    xhr.open('GET', 'giaohang.html', true);
+    xhr.open('GET', 'giaohang.php', true);
 
     // Xử lý sự kiện khi yêu cầu được gửi và nhận được phản hồi
     xhr.onload = function () {
@@ -165,7 +165,7 @@ function loadContentGiaoHang() {
                 console.error('Không tìm thấy phần tử có lớp "main_content"');
             }
         } else {
-            console.error('Không thể tải giaohang.html');
+            console.error('Không thể tải giaohang.php');
         }
     };
 
@@ -181,7 +181,7 @@ function loadContentBanh() {
     var xhr = new XMLHttpRequest();
 
     // Mở yêu cầu GET đến tệp "tintuc.html"
-    xhr.open('GET', 'banh.html', true);
+    xhr.open('GET', 'banh.php', true);
 
     // Xử lý sự kiện khi yêu cầu được gửi và nhận được phản hồi
     xhr.onload = function () {
@@ -197,7 +197,7 @@ function loadContentBanh() {
                 console.error('Không tìm thấy phần tử có lớp "main_content"');
             }
         } else {
-            console.error('Không thể tải banh.html');
+            console.error('Không thể tải banh.php');
         }
     };
 
@@ -210,6 +210,8 @@ function loadContentBanh() {
     xhr.send();
 }
 
+
+
 //một sự kiện được kích hoạt khi DOM của trang web đã được tải và phân tích hoàn toàn.
 document.addEventListener("DOMContentLoaded", function () {
     var params = new URLSearchParams(window.location.search);
@@ -218,7 +220,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 loadContent(page);
             }
     // Gán sự kiện click cho liên kết "TIN TỨC"
-    var tinTucLink1 = document.querySelector('a[href="tintuc.html"]');//Lấy thẻ a có thuộc tính href bằng "tintuc.html".
+    var tinTucLink1 = document.querySelector('a[href="tintuc.php"]');//Lấy thẻ a có thuộc tính href bằng "tintuc.html".
     if (tinTucLink1) {
         tinTucLink1.addEventListener('click', function (event) {//Gắn một sự kiện "click" vào liên kết này, để khi được nhấp vào, 
             //sẽ gọi hàm xử lý sự kiện được định nghĩa bên trong.
@@ -231,7 +233,7 @@ document.addEventListener("DOMContentLoaded", function () {
             loadNewsContent();
         });
     }
-    var tinTucLink2 = document.querySelector('a[href="thanhtoan.html"]');
+    var tinTucLink2 = document.querySelector('a[href="thanhtoan.php"]');
     if (tinTucLink2) {
         tinTucLink2.addEventListener('click', function (event) {
             // Ngăn chặn hành vi mặc định của liên kết
@@ -241,7 +243,7 @@ document.addEventListener("DOMContentLoaded", function () {
             loadContentThanhToan();
         });
     }
-    var tinTucLink3 = document.querySelector('a[href="dangnhap.html"]');
+    var tinTucLink3 = document.querySelector('a[href="dangnhap.php"]');
     if (tinTucLink3) {
         tinTucLink3.addEventListener('click', function (event) {
             // Ngăn chặn hành vi mặc định của liên kết
@@ -251,7 +253,7 @@ document.addEventListener("DOMContentLoaded", function () {
             loadContentDangNhap();
         });
     }
-    var tinTucLink4 = document.querySelector('a[href="giaohang.html"]');
+    var tinTucLink4 = document.querySelector('a[href="giaohang.php"]');
     if (tinTucLink4) {
         tinTucLink4.addEventListener('click', function (event) {
             // Ngăn chặn hành vi mặc định của liên kết
@@ -261,7 +263,7 @@ document.addEventListener("DOMContentLoaded", function () {
             loadContentGiaoHang();
         });
     }
-    var tinTucLink5 = document.querySelector('a[href="banh.html"]');
+    var tinTucLink5 = document.querySelector('a[href="banh.php"]');
     if (tinTucLink5) {
         tinTucLink5.addEventListener('click', function (event) {
             // Ngăn chặn hành vi mặc định của liên kết

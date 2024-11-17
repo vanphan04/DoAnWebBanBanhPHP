@@ -19,6 +19,7 @@ function validateForm() {
         window.location.href = 'main.html';
     }
 }
+
 function validateEmail(email) {
     var emailRegex = /\S+@\S+\.\S+/;
     return emailRegex.test(email);

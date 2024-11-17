@@ -40,7 +40,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <input type="password" name="password" placeholder="Mật khẩu" required><br>  
             <a class="sighup" href="#">Đăng ký</a><br>
             <div>
-                <p>Bạn đã có tài khoản<span><a href="./dangnhap.php" style="color: blue;"> Đăng nhập</a></span></p> 
+                <p>Bạn đã có tài khoản<span><a href="dangnhap.php" style="color: blue;"> Đăng nhập</a></span></p> 
             </div>
         </form>
     </div>
