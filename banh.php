@@ -31,6 +31,11 @@ $images = [];
 while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
     $images[] = $row['image'];
 }
+
+$sql_categories = "SELECT id, name FROM categories";
+$stmt = $conn->prepare($sql_categories);
+$stmt->execute();
+$categories = $stmt->fetchAll(PDO::FETCH_ASSOC);
 ?>
 
 <!DOCTYPE html>
@@ -93,10 +98,9 @@ while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
         </p>
                 <h4>Xem thêm các loại bánh khác</h4>
                 <ul>
-                    <li id="khac"><a href="#">Bánh kem sinh nhật</a></li>
-                    <li id="khac"><a href="#">Bánh Mousse</a></li>
-                    <li id="khac"><a href="#">Bánh Entrement</a></li>
-                    <li id="khac"><a href="#">Bánh kem bắp</a></li>
+                    <?php foreach ($categories as $category): ?>
+                        <li id="khac"><a href="category.php?id=<?php echo $category['id']; ?>"><?php echo htmlspecialchars($category['name']); ?></a></li>
+                    <?php endforeach; ?>
                 </ul>
             </div>
         </div>
