@@ -1,28 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cake Shop</title>
-    <link rel="stylesheet" href="styles/main.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Mulish:ital,wght@0,200..1000;1,200..1000&display=swap"
-        rel="stylesheet">
-    <script src="scripts/main.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
-    <script src="scripts/dangnhap.js"></script>
-    <script src="scripts/giaohang.js"></script>
-    <script src="scripts/slide.js" defer></script>
-    <link rel="stylesheet"
-        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
-</head>
+<?php 
+require('includes/header.php'); 
+require('config.php');
+?>
 
 <body onload="myFunction()"> 
     <div id="loader"></div>
@@ -44,14 +26,25 @@
                             <div class="menubanh">
                                 <div><a href="#">MENU BÁNH</a></div>
                                 <span class="menu_danhsach"></span>
-                                <ul>
-                                    <li><a href="#">Sweet Box</a></li>
-                                    <li><a href="#">Bánh Mousse</a></li>
-                                    <li><a href="#">Bánh Etremet</a></li>
-                                    <li><a href="#">Bánh Kem Bắp</a></li>
-                                    <li><a href="#">Bánh Flan Gato</a></li>
-                                    <li><a href="#">Combo Bánh Nướng</a></li>
-                                </ul>
+                                <?php
+                                    // Truy vấn cơ sở dữ liệu để lấy danh sách các danh mục
+                                    $sql = "SELECT name FROM categories";  // Truy vấn lấy tên các danh mục
+                                    $result = $conn->query($sql);  // Thực hiện truy vấn
+
+                                    // Kiểm tra nếu có danh mục trả về
+                                    if ($result->rowCount() > 0) {
+                                        // Duyệt qua từng danh mục và hiển thị trên giao diện
+                                        echo '<ul>';
+                                        while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
+                                            echo '<li><a href="#">' . htmlspecialchars($row['name']) . '</a></li>';
+                                        }
+                                        echo '</ul>';
+                                    } else {
+                                        echo '<ul><li>Không có danh mục nào.</li></ul>';
+                                    }
+
+                                    // Đóng kết nối (bạn không cần phải làm gì đặc biệt, PDO sẽ tự động đóng kết nối khi không còn sử dụng)
+                                    ?>
                             </div>
                             <li><a href="dangnhap.php">ĐĂNG NHẬP</a></li>
                             <li><a href="thanhtoan.php">THANH TOÁN</a></li>
@@ -73,15 +66,30 @@
                     <div class="slider-wrapper">
                         <button id="prev-slide" class="slide-button material-symbols-rounded">chevron_left</button>
                         <div class="image-list">
-                            <a href="#"><img src="images/slide.png" alt="img-1" class="image-item"></a>
-                            <a href="banh.php"><img src="images/slide1.jpg" alt="img-2" class="image-item"></a>
-                            <a href="#"><img src="images/slide5.jpg" alt="img-3" class="image-item"></a>
-                            <a href="#"><img src="images/slide3.png" alt="img-4" class="image-item"></a>
-                            <a href="#"><img src="images/slide4.jpg" alt="img-5" class="image-item"></a>
-                            <a href="#"><img src="images/slide6.jpg" alt="img-6" class="image-item"></a>
-                            <a href="#"><img src="images/slide7.jpg" alt="img-7" class="image-item"></a>
-                            <a href="#"><img src="images/slide8.jpg" alt="img-8" class="image-item"></a>
-                            <a href="#"><img src="images/slide9.jpg" alt="img-9" class="image-item"></a>
+                        <?php
+                            // Truy vấn lấy 9 ảnh ngẫu nhiên từ các sản phẩm khác nhau
+                            $sql = "
+                                SELECT product_id, image
+                                FROM product_images
+                                GROUP BY product_id
+                                ORDER BY RAND()
+                                LIMIT 9
+                            ";
+                            $stmt = $conn->query($sql);
+
+                            // Kiểm tra nếu có dữ liệu trả về
+                            if ($stmt->rowCount() > 0) {
+                                // Duyệt qua các ảnh và hiển thị chúng
+                                while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+                                    // Đảm bảo tên ảnh được thoát để tránh các vấn đề bảo mật
+                                    $image_url = htmlspecialchars($row['image']);
+                                    echo '<a href="#"><img src="' . $image_url . '" alt="product-image" class="image-item"></a>';
+                                }
+                            } else {
+                                // Nếu không có ảnh nào
+                                echo '<p>No images available.</p>';
+                            }
+                            ?>
                         </div>
                         <button id="next-slide" class="slide-button material-symbols-rounded">chevron_right</button>
                     </div>
@@ -98,7 +106,7 @@
                     <div class="text">
                         <h3>Không chỉ là chiếc bánh, mà là một món quà</h3>
                         <p>Dù bạn là ai, chúng tôi mong rằng, bạn sẽ luôn tìm được chiếc bánh phù hợp với khẩu vị của
-                            riêng mình tại CakeShop.</p>
+                            riêng mình tại VG Cake.</p>
                         <p>Từ chiếc hộp, cây nến, tấm bưu thiệp hay cách chúng tôi trao tới bạn tận tay món quà ấy, đều
                             sẽ
                             được chuẩn bị thật chu đáo.</p>
@@ -109,29 +117,37 @@
                         <h1>Sản Phẩm Mới</h1>
                     </div>
                     <div class="dsSP">
-                        <?php
-                        // Dữ liệu sản phẩm (sử dụng cơ sở dữ liệu hoặc mảng giả lập)
-                        $products = [
-                            ["Soft Glow – Flan Gato Mè Đen Matcha", "images/new1.jpg", "535.000"],
-                            ["Bold Charming – Flan Gato Trà Thái Đỏ", "images/new2.jpg", "685.000"],
-                            ["My Muse – Entremet Ôlong Vải Hoa Hồng", "images/new3.png", "735.000"],
-                            ["Delicate Bloom – Bánh Kem Bắp Dâu", "images/new4.jpg", "465.000"],
-                            ["Flan Gato Strawberry – Flan Gato Dâu", "images/best1.png", "465.000"],
-                            ["Tropical Vibes Mousse – Mousse Ổi hồng & Chanh dây", "images/best2.png", "485.000"],
-                            ["Green Bliss – Mousse Bơ", "images/best3.png", "535.000"],
-                            ["Sweet Box Cool Summer – Mùa Hè Thanh Mát (Xanh)", "images/best4.png", "495.000"]
-                        ];
+                    <?php
+                            // Truy vấn lấy 8 sản phẩm ngẫu nhiên từ bảng products và product_images
+                            $sql = "SELECT p.id, p.name, pi.image, p.price 
+                                    FROM products p
+                                    JOIN product_images pi ON p.id = pi.product_id
+                                    GROUP BY p.id
+                                    ORDER BY RAND() 
+                                    LIMIT 8";  // Lấy 8 sản phẩm ngẫu nhiên
+                            $stmt = $conn->query($sql);
 
-                        // Hiển thị sản phẩm
-                        foreach ($products as $product) {
-                            echo '<div>
-                                    <a href="#">
-                                        <img src="'.$product[1].'" height="400" />
-                                        <h2>'.$product[0].'</h2>
-                                        <p>'.$product[2].'</p>
-                                    </a>
-                                  </div>';
-                        }
+                            // Kiểm tra nếu có dữ liệu trả về
+                            if ($stmt->rowCount() > 0) {
+                                // Duyệt qua các sản phẩm và hiển thị chúng
+                                while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+                                    // Đảm bảo tên ảnh được thoát để tránh các vấn đề bảo mật
+                                    $image_url = htmlspecialchars($row['image']);
+                                    $product_name = htmlspecialchars($row['name']);
+                                    $product_price = number_format($row['price'], 0, ',', '.');  // Định dạng giá thành tiền
+
+                                    echo '<div>
+                                            <a href="#">
+                                                <img src="' . $image_url . '" height="400" />
+                                                <h2>' . $product_name . '</h2>
+                                                <p>' . $product_price . '</p>
+                                            </a>
+                                        </div>';
+                                }
+                            } else {
+                                // Nếu không có sản phẩm nào
+                                echo '<p>No products available.</p>';
+                            }
                         ?>
                     </div>
                 </div>
@@ -146,21 +162,28 @@
                     <p>Email: contact@cakeshop.com</p>
                     <p>Giấy chứng nhận đăng ký kinh doanh: 646466533</p>
                     <p>Mã số doanh nghiệp: 253454535355. Giấy chứng nhận đăng ký doanh nghiệp do Sở Kế hoạch và Đầu tư
-                        Thành phố Hồ Chí Minh cấp ngày 1 tháng 1 năm 2010.</p>
-                    <div>
-                        <a href="#"><img src="images/facebook.svg" alt="facebook"></a>
-                        <a href="#"><img src="images/instagram.svg" alt="instagram"></a>
-                        <a href="#"><img src="images/youtube.svg" alt="youtube"></a>
-                    </div>
+                        Thành
+                        phố Hồ Chí Minh cấp lần đầu ngày 16/04/2019.</p>
                 </div>
                 <div class="ft-down">
-                    <a href="tintuc.php">Tin Tức</a>
-                    <a href="hoidap.php">Hỏi Đáp</a>
-                    <a href="chamsockhachhang.php">Chăm Sóc Khách Hàng</a>
+                    Copyright&copy; Vũ Thị Hương Giang<br /> MSSV: DH52110848<br /> Lớp: D21_TH11
+                </div>
+                <div class="action-buttons">
+                    <a href="tel:0985344133" class="contact-link phone-icon" id="tel">
+                        <i class="fas fa-phone"></i>
+                        <span class="phone-number">0985 344 133</span>
+                    </a>
+                    <a href="https://m.me/yourfacebookpage" class="contact-link fb-messenger-icon">
+                        <i class="fa-brands fa-facebook-messenger"></i>
+                    </a>
+                    <a href="https://zalo.me/0985344133" class="contact-link zalo-icon">
+                        <div class="animated_zalo infinite pulse_zalo cmoz-alo-circle-fill" id="div"></div>
+                        <img src="images/Icon_of_Zalo.svg.png" alt="Zalo">
+
+                    </a>
                 </div>
             </footer>
         </div>
     </div>
 </body>
-
 </html>
