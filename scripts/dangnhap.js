@@ -20,7 +20,7 @@ function validateForm() {
     }
 }
 function dangnhap(){
-    window.location.href = "dangnhap.php?page=dangki.php";
+    window.location.href = "dangki.php";
 }
 
 function validateEmail(email) {

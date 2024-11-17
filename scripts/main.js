@@ -193,6 +193,9 @@ function loadContentBanh(productId) {
             var mainContentElement = document.querySelector('.main_content');
             if (mainContentElement) {
                 mainContentElement.innerHTML = newsContent;
+
+                // Gọi lại hàm để hiển thị slide ảnh
+                showSlides(slideIndex); // Hoặc gọi lại các hàm slide tương ứng
             } else {
                 console.error('Không tìm thấy phần tử có lớp "main_content"');
             }
@@ -210,72 +213,96 @@ function loadContentBanh(productId) {
     xhr.send();
 }
 
+function loadContentdsBanh(cateId) {
+    var xhr = new XMLHttpRequest();
+
+    // Mở yêu cầu GET đến tệp "banh.php" với product_id
+    xhr.open('GET', 'dsBanh.php?category_id=' + cateId, true);
+
+    // Xử lý sự kiện khi yêu cầu được gửi và nhận được phản hồi
+    xhr.onload = function () {
+        if (xhr.status >= 200 && xhr.status < 400) {
+            // Lấy nội dung của phản hồi từ máy chủ
+            var newsContent = xhr.responseText;
+
+            // Thay thế nội dung của phần tử có lớp "main_content" bằng nội dung mới
+            var mainContentElement = document.querySelector('.main_content');
+            if (mainContentElement) {
+                mainContentElement.innerHTML = newsContent;
+            } else {
+                console.error('Không tìm thấy phần tử có lớp "main_content"');
+            }
+        } else {
+            console.error('Không thể tải dsBanh.php');
+        }
+    };
+
+    // Xử lý lỗi khi không thể gửi yêu cầu
+    xhr.onerror = function () {
+        console.error('Lỗi kết nối');
+    };
+
+    // Gửi yêu cầu
+    xhr.send();
+}
+
 
 //một sự kiện được kích hoạt khi DOM của trang web đã được tải và phân tích hoàn toàn.
 document.addEventListener("DOMContentLoaded", function () {
     var params = new URLSearchParams(window.location.search);
-            var page = params.get('page');
-            if (page) {
-                loadContent(page);
-            }
-    // Gán sự kiện click cho liên kết "TIN TỨC"
-    var tinTucLink1 = document.querySelector('a[href="tintuc.php"]');//Lấy thẻ a có thuộc tính href bằng "tintuc.html".
+    var page = params.get('page');
+    if (page) {
+        loadContent(page);
+    }
+
+    var tinTucLink1 = document.querySelector('a[href="tintuc.php"]');
     if (tinTucLink1) {
-        tinTucLink1.addEventListener('click', function (event) {//Gắn một sự kiện "click" vào liên kết này, để khi được nhấp vào, 
-            //sẽ gọi hàm xử lý sự kiện được định nghĩa bên trong.
-
-            // Ngăn chặn hành vi mặc định của liên kết, không điều hướng đến trang mới.
+        tinTucLink1.addEventListener('click', function (event) {
             event.preventDefault();
-
-            // Gọi hàm loadNewsContent() khi người dùng click vào liên kết "TIN TỨC"
-            //Gọi hàm tải nội dung mới tương ứng với liên kết đó.
             loadNewsContent();
         });
     }
+
     var tinTucLink2 = document.querySelector('a[href="thanhtoan.php"]');
     if (tinTucLink2) {
         tinTucLink2.addEventListener('click', function (event) {
-            // Ngăn chặn hành vi mặc định của liên kết
             event.preventDefault();
-
-            // Gọi hàm loadNewsContent() khi người dùng click vào liên kết "TIN TỨC"
             loadContentThanhToan();
         });
     }
+
     var tinTucLink3 = document.querySelector('a[href="dangnhap.php"]');
     if (tinTucLink3) {
         tinTucLink3.addEventListener('click', function (event) {
-            // Ngăn chặn hành vi mặc định của liên kết
             event.preventDefault();
-
-            // Gọi hàm loadNewsContent() khi người dùng click vào liên kết "TIN TỨC"
             loadContentDangNhap();
         });
     }
+
     var tinTucLink4 = document.querySelector('a[href="giaohang.php"]');
     if (tinTucLink4) {
         tinTucLink4.addEventListener('click', function (event) {
-            // Ngăn chặn hành vi mặc định của liên kết
             event.preventDefault();
-
-            // Gọi hàm loadNewsContent() khi người dùng click vào liên kết "TIN TỨC"
             loadContentGiaoHang();
         });
     }
+
+    // Chỉnh sửa lại cho các liên kết sản phẩm và danh sách bánh
     var productLinks = document.querySelectorAll('a[href^="banh.php?product_id="]');
     productLinks.forEach(function(link) {
         link.addEventListener('click', function(event) {
-            // Ngăn chặn hành vi mặc định của liên kết
             event.preventDefault();
-
-            // Lấy product_id từ thuộc tính href
             var productId = new URL(link.href).searchParams.get('product_id');
-            
-            // Gọi hàm loadContentBanh với product_id
             loadContentBanh(productId);
         });
     });
+
+    var dsBanhlink = document.querySelectorAll('a[href^="dsBanh.php?category_id="]');
+    dsBanhlink.forEach(function(link) {
+        link.addEventListener('click', function(event) {
+            event.preventDefault();
+            var cateId = new URL(link.href).searchParams.get('category_id');
+            loadContentdsBanh(cateId);
+        });
+    });
 });
-
-
-

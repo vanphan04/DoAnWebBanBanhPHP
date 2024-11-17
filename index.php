@@ -27,11 +27,10 @@ require('config.php');
                                 <div><a href="#">MENU BÁNH</a></div>
                                 <span class="menu_danhsach"></span>
                                 <?php
-                
                                     $conn = connectDatabase();
 
                                     // Truy vấn cơ sở dữ liệu để lấy danh sách các danh mục
-                                    $sql = "SELECT name FROM categories";  // Truy vấn lấy tên các danh mục
+                                    $sql = "SELECT id, name FROM categories";  // Truy vấn lấy tên và id các danh mục
                                     $result = $conn->query($sql);  // Thực hiện truy vấn
 
                                     // Kiểm tra nếu có danh mục trả về
@@ -39,15 +38,13 @@ require('config.php');
                                         // Duyệt qua từng danh mục và hiển thị trên giao diện
                                         echo '<ul>';
                                         while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
-                                            echo '<li><a href="#">' . htmlspecialchars($row['name']) . '</a></li>';
+                                            echo '<li><a href="dsBanh.php?category_id=' . htmlspecialchars($row['id']) . '">' . htmlspecialchars($row['name']) . '</a></li>';
                                         }
                                         echo '</ul>';
                                     } else {
                                         echo '<ul><li>Không có danh mục nào.</li></ul>';
                                     }
-
-                                    // Đóng kết nối (bạn không cần phải làm gì đặc biệt, PDO sẽ tự động đóng kết nối khi không còn sử dụng)
-                                    ?>
+                                ?>
                             </div>
                             <li><a href="dangnhap.php">ĐĂNG NHẬP</a></li>
                             <li><a href="thanhtoan.php">THANH TOÁN</a></li>
@@ -145,7 +142,7 @@ require('config.php');
                                             <a href="banh.php?product_id=' . $product_id . '">
                                                 <img src="' . $image_url . '" height="400" />
                                                 <h2>' . $product_name . '</h2>
-                                                <p>' . $product_price . '</p>
+                                                <p>' . $product_price ." đ". '</p>
                                             </a>
                                         </div>';
                                 }
