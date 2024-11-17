@@ -18,6 +18,10 @@ function toggleMenu() {
     var menu = document.querySelector('.mainmenu');/*Lấy phần tử menu.*/
     menu.classList.toggle('active'); /*Thêm hoặc xóa lớp "active" khỏi phần tử menu, khiến cho menu mở hoặc đóng.*/
 }
+function closeMenu() {
+    const menu = document.querySelector('.mainmenu');
+    menu.classList.remove('active');
+}
 
 
 function loadContent(url) {

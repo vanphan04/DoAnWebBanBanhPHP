@@ -24,7 +24,7 @@ require('config.php');
                                 <a href="index.php" id="home-link">TRANG CHỦ</a>
                             </li>
                             <div class="menubanh">
-                                <div><a href="#">MENU BÁNH</a></div>
+                                <div><a href="#" onclick="closeMenu()">MENU BÁNH</a></div>
                                 <span class="menu_danhsach"></span>
                                 <?php
                                     $conn = connectDatabase();
@@ -38,7 +38,7 @@ require('config.php');
                                         // Duyệt qua từng danh mục và hiển thị trên giao diện
                                         echo '<ul>';
                                         while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
-                                            echo '<li><a href="dsBanh.php?category_id=' . htmlspecialchars($row['id']) . '">' . htmlspecialchars($row['name']) . '</a></li>';
+                                            echo '<li><a onclick="closeMenu()" href="dsBanh.php?category_id=' . htmlspecialchars($row['id']) . '">' . htmlspecialchars($row['name']) . '</a></li>';
                                         }
                                         echo '</ul>';
                                     } else {
@@ -46,10 +46,10 @@ require('config.php');
                                     }
                                 ?>
                             </div>
-                            <li><a href="dangnhap.php">ĐĂNG NHẬP</a></li>
-                            <li><a href="thanhtoan.php">THANH TOÁN</a></li>
-                            <li><a href="giaohang.php">GIAO HÀNG</a></li>
-                            <li><a href="tintuc.php">TIN TỨC</a></li>
+                            <li><a href="dangnhap.php" onclick="closeMenu()">ĐĂNG NHẬP</a></li>
+                            <li><a href="thanhtoan.php" onclick="closeMenu()">THANH TOÁN</a></li>
+                            <li><a href="giaohang.php" onclick="closeMenu()">GIAO HÀNG</a></li>
+                            <li><a href="tintuc.php" onclick="closeMenu()">TIN TỨC</a></li>
                         </ul>
                     </div>
                 </div>
