@@ -27,6 +27,9 @@ require('config.php');
                                 <div><a href="#">MENU BÁNH</a></div>
                                 <span class="menu_danhsach"></span>
                                 <?php
+                
+                                    $conn = connectDatabase();
+
                                     // Truy vấn cơ sở dữ liệu để lấy danh sách các danh mục
                                     $sql = "SELECT name FROM categories";  // Truy vấn lấy tên các danh mục
                                     $result = $conn->query($sql);  // Thực hiện truy vấn
@@ -67,28 +70,29 @@ require('config.php');
                         <button id="prev-slide" class="slide-button material-symbols-rounded">chevron_left</button>
                         <div class="image-list">
                         <?php
-                            // Truy vấn lấy 9 ảnh ngẫu nhiên từ các sản phẩm khác nhau
-                            $sql = "
-                                SELECT product_id, image
-                                FROM product_images
-                                GROUP BY product_id
-                                ORDER BY RAND()
-                                LIMIT 9
-                            ";
-                            $stmt = $conn->query($sql);
+                                // Truy vấn lấy 9 ảnh ngẫu nhiên từ các sản phẩm khác nhau
+                                $sql = "
+                                    SELECT product_id, image
+                                    FROM product_images
+                                    GROUP BY product_id
+                                    ORDER BY RAND()
+                                    LIMIT 9
+                                ";
+                                $stmt = $conn->query($sql);
 
-                            // Kiểm tra nếu có dữ liệu trả về
-                            if ($stmt->rowCount() > 0) {
-                                // Duyệt qua các ảnh và hiển thị chúng
-                                while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
-                                    // Đảm bảo tên ảnh được thoát để tránh các vấn đề bảo mật
-                                    $image_url = htmlspecialchars($row['image']);
-                                    echo '<a href="#"><img src="' . $image_url . '" alt="product-image" class="image-item"></a>';
+                                // Kiểm tra nếu có dữ liệu trả về
+                                if ($stmt->rowCount() > 0) {
+                                    // Duyệt qua các ảnh và hiển thị chúng
+                                    while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+                                        // Đảm bảo tên ảnh được thoát để tránh các vấn đề bảo mật
+                                        $image_url = htmlspecialchars($row['image']);
+                                        $product_id = $row['product_id'];  // Lấy product_id để sử dụng trong URL
+                                        echo '<a href="banh.php?product_id=' . $product_id . '"><img src="' . $image_url . '" alt="product-image" class="image-item"></a>';
+                                    }
+                                } else {
+                                    // Nếu không có ảnh nào
+                                    echo '<p>No images available.</p>';
                                 }
-                            } else {
-                                // Nếu không có ảnh nào
-                                echo '<p>No images available.</p>';
-                            }
                             ?>
                         </div>
                         <button id="next-slide" class="slide-button material-symbols-rounded">chevron_right</button>
@@ -135,9 +139,10 @@ require('config.php');
                                     $image_url = htmlspecialchars($row['image']);
                                     $product_name = htmlspecialchars($row['name']);
                                     $product_price = number_format($row['price'], 0, ',', '.');  // Định dạng giá thành tiền
+                                    $product_id = $row['id'];  // Lấy product_id
 
                                     echo '<div>
-                                            <a href="#">
+                                            <a href="banh.php?product_id=' . $product_id . '">
                                                 <img src="' . $image_url . '" height="400" />
                                                 <h2>' . $product_name . '</h2>
                                                 <p>' . $product_price . '</p>
@@ -149,6 +154,7 @@ require('config.php');
                                 echo '<p>No products available.</p>';
                             }
                         ?>
+
                     </div>
                 </div>
             </div>
@@ -186,4 +192,5 @@ require('config.php');
         </div>
     </div>
 </body>
+
 </html>

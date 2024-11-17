@@ -16,8 +16,11 @@ function validateForm() {
     }
     if (isValid) {
         alert('Đăng nhập thành công!');
-        window.location.href = 'main.html';
+        window.location.href = 'index.php';
     }
+}
+function dangnhap(){
+    window.location.href = "dangnhap.php?page=dangki.php";
 }
 
 function validateEmail(email) {
