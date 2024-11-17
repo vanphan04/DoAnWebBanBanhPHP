@@ -28,6 +28,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Đăng Ký</title>
+    <script src="scripts/dangki.js"></script>
     <link rel="stylesheet" href="./styles/dangki.css">
 </head>
 <body>
@@ -40,7 +41,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <input type="password" name="password" placeholder="Mật khẩu" required><br>  
             <a class="sighup" href="#">Đăng ký</a><br>
             <div>
-                <p>Bạn đã có tài khoản<span><a href="dangnhap.php" style="color: blue;"> Đăng nhập</a></span></p> 
+                <p>Bạn đã có tài khoản<span><a style="color: blue;" onclick="dangnhap()"> Đăng nhập</a></span></p> 
             </div>
         </form>
     </div>

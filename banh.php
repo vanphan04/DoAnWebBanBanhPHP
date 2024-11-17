@@ -105,8 +105,7 @@ $categories = $stmt->fetchAll(PDO::FETCH_ASSOC);
             </div>
         </div>
     </div>
-    <script src="scripts/banh.js" defer></script>
-    <?php include 'scripts/banh.js' ?>
+    <script src="scripts/banh.js"></script>
 </body>
 
 </html>

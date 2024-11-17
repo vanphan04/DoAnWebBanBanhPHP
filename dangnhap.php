@@ -72,7 +72,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <span class="-or"></span><span class="or">Or</span><span class="-or"></span> <br>
             <a class="loginn" href="#">Đăng Nhập </a><br>
             <div>
-                <p>Bạn chưa có tài khoản<span><a href="dangki.php" style="color: blue;"> Đăng ký</a></span></p> 
+                <p>Bạn chưa có tài khoản<span><a style="color: blue;" onclick="dangki()"> Đăng ký</a></span></p> 
             </div>
         </form>
     </div>

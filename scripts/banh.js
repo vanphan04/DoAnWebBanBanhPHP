@@ -64,7 +64,7 @@ function giamsl() {
     }
 }
 
-// function giaohang(){
-//     window.location.href = "index.php?page=giaohang.php";
-// }
+function giaohang(){
+    window.location.href = "index.php?page=giaohang.php";
+}
 

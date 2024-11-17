@@ -38,6 +38,7 @@ if (isset($_GET['category_id'])) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Danh sách bánh</title>
+    <script src="scripts/dsBanh.js"></script>
     <link rel="stylesheet" href="styles/dsBanh.css"> <!-- Thêm file CSS nếu cần -->
 </head>
 <body>
@@ -56,7 +57,7 @@ if (isset($_GET['category_id'])) {
                     ?>
 
                     <div class="product-item">
-                        <a href="banh.php?product_id=<?php echo $product_id; ?>">
+                        <a onclick="dsBanh()" href="banh.php?product_id=<?php echo $product_id; ?>">
                             <img src="<?php echo $image_url; ?>" alt="Hình ảnh <?php echo $product_name; ?>" />
                             <h2><?php echo $product_name; ?></h2>
                             <p><?php echo $product_price . " đ"; ?></p>

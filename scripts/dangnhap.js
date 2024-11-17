@@ -19,8 +19,8 @@ function validateForm() {
         window.location.href = 'index.php';
     }
 }
-function dangnhap(){
-    window.location.href = "dangki.php";
+function dangki(){
+    window.location.href = "index.php?page=dangki.php";
 }
 
 function validateEmail(email) {

@@ -16,8 +16,10 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
     <script src="scripts/dangnhap.js"></script>
     <script src="scripts/giaohang.js"></script>
-    <script src="scripts/slide.js" defer></script>
+    <script src="scripts/slide.js"></script>
     <script src="scripts/banh.js"></script>
+    <script src="scripts/dangki.js"></script>
+    <script src="scripts/dsBanh.js"></script>
     <link rel="stylesheet"
         href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
 </head>
