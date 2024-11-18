@@ -98,9 +98,13 @@ $categories = $stmt->fetchAll(PDO::FETCH_ASSOC);
         </p>
                 <h4>Xem thêm các loại bánh khác</h4>
                 <ul>
-                    <?php foreach ($categories as $category): ?>
-                        <li id="khac"><a href="category.php?id=<?php echo $category['id']; ?>"><?php echo htmlspecialchars($category['name']); ?></a></li>
-                    <?php endforeach; ?>
+                <?php foreach ($categories as $category): ?>
+                    <li id="khac">
+                        <a href="dsBanh.php?category_id=<?php echo $category['id']; ?>">
+                            <?php echo htmlspecialchars($category['name']); ?>
+                        </a>
+                    </li>
+                <?php endforeach; ?>
                 </ul>
             </div>
         </div>
