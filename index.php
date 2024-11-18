@@ -20,6 +20,14 @@ require('config.php');
                             <i class="fa fa-bars"></i>
                         </div>
                         <ul class="mainmenu">
+                        <li>
+                            <form action="timkiem.php" method="get" class="search-form" onsubmit="closeMenu()">
+                                <input type="text" name="query" placeholder="Tìm kiếm..." required>
+                                <button type="submit">
+                                    <i class="fa fa-search"></i>
+                                </button>
+                            </form>
+                        </li>
                             <li>
                                 <a href="index.php" id="home-link">TRANG CHỦ</a>
                             </li>
@@ -46,10 +54,18 @@ require('config.php');
                                     }
                                 ?>
                             </div>
-                            <li><a href="dangnhap.php" onclick="closeMenu()">ĐĂNG NHẬP</a></li>
-                            <li><a href="thanhtoan.php" onclick="closeMenu()">THANH TOÁN</a></li>
-                            <li><a href="giaohang.php" onclick="closeMenu()">GIAO HÀNG</a></li>
                             <li><a href="tintuc.php" onclick="closeMenu()">TIN TỨC</a></li>
+                            <li>
+                                <a href="giohang.php" onclick="closeMenu()" class="icon-link">
+                                    <i class="fa fa-shopping-cart"></i>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="dangnhap.php" onclick="closeMenu()" class="icon-link">
+                                    <i class="fa fa-user"></i>
+                                </a>
+                            </li>
+
                         </ul>
                     </div>
                 </div>
