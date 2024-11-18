@@ -70,6 +70,5 @@ if (isset($_GET['category_id'])) {
             <?php endif; ?>
         </div>
     </div>
-
 </body>
 </html>
