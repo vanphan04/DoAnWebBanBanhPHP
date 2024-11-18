@@ -166,6 +166,95 @@ body {
     text-decoration: none;
     color: white;
 }
+/* Định dạng chung cho form tìm kiếm */
+.search-form {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.search-form input {
+    width: 200px;
+    padding: 5px 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    outline: none;
+    transition: border-color 0.3s ease-in-out;
+}
+
+.search-form input:focus {
+    border-color: #44612d; /* Màu viền khi chọn */
+}
+
+.search-form button {
+    padding: 5px 10px;
+    background-color: #44612d;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease-in-out;
+}
+
+.search-form button i {
+    font-size: 16px;
+}
+
+.search-form button:hover {
+    background-color: #5e925e; /* Màu nút khi rê chuột */
+}
+/* Định dạng chung cho các liên kết icon */
+.icon-link {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: white;
+    gap: 5px; /* Khoảng cách giữa biểu tượng và chữ */
+    padding: 5px 10px;
+    transition: color 0.3s ease-in-out;
+}
+
+.icon-link i {
+    font-size: 18px; /* Kích thước icon */
+}
+
+.icon-link:hover {
+    color: #ffd700; /* Màu chữ khi rê chuột */
+}
+
+/* Responsive cho màn hình nhỏ */
+@media (max-width: 600px) {
+    .icon-link {
+        justify-content: center;
+    }
+}
+
+
+/* Responsive cho màn hình nhỏ */
+@media (max-width: 600px) {
+    .search-form {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+    }
+
+    .search-form input {
+        width: 100%;
+    }
+
+    .search-form button {
+        width: 100%;
+        text-align: center;
+    }
+}
+
+/* Responsive cho máy tính bảng */
+@media (min-width: 601px) and (max-width: 1280px) {
+    .search-form input {
+        width: 180px;
+    }
+}
 
 
 .banner {
