@@ -6,6 +6,7 @@ require('includes/header.php');
 require('config.php');
 ?>
 
+
 <body onload="myFunction()"> 
     <div id="loader"></div>
     <div id="myDiv" style="display:none;">
