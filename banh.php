@@ -111,5 +111,4 @@ $categories = $stmt->fetchAll(PDO::FETCH_ASSOC);
     </div>
     <script src="scripts/banh.js"></script>
 </body>
-
 </html>
