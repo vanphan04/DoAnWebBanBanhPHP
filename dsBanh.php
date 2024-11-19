@@ -42,13 +42,11 @@ if (isset($_GET['category_id'])) {
     <link rel="stylesheet" href="styles/dsBanh.css"> <!-- Thêm file CSS nếu cần -->
 </head>
 <body>
-
     <div class="monmoi">
         <div class="dsSP">
             <?php if (!empty($dsBanh)): ?>
                 <?php foreach ($dsBanh as $banh): ?>
                     <?php
-                        
                         // Kiểm tra xem có hình ảnh không, nếu không thì sử dụng một hình ảnh mặc định
                         $image_url = !empty($banh['image']) ? htmlspecialchars($banh['image']) : 'default.jpg'; 
                         $product_name = htmlspecialchars($banh['name']);
