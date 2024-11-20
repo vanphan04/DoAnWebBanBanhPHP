@@ -22,8 +22,8 @@ require('config.php');
                         </div>
                         <ul class="mainmenu">
                         <li>
-                            <form action="timkiem.php" method="get" class="search-form" onsubmit="closeMenu()">
-                                <input type="text" name="query" placeholder="Tìm kiếm..." required>
+                            <form action="timkiem.php" method="get" id="search-form" class="search-form" onsubmit="closeMenu()">
+                                <input type="text" name="query" id="search-input" placeholder="Tìm kiếm..." required>
                                 <button type="submit">
                                     <i class="fa fa-search"></i>
                                 </button>

@@ -3,10 +3,15 @@ session_start();
 require('config.php'); // Kết nối cơ sở dữ liệu
 
 // Kiểm tra nếu người dùng chưa đăng nhập
-if (!isset($_SESSION['user_id'])) {
-    die('Bạn phải đăng nhập để xem giỏ hàng.');
-}
-
+?> 
+<div style="min-height: 500px; display: flex; justify-content: center; align-items: center; text-align: center;">
+    <?php 
+    if (!isset($_SESSION['user_id'])) {
+        die('Bạn phải đăng nhập để xem giỏ hàng.');
+    }
+    ?>
+</div>
+<?php
 $user_id = $_SESSION['user_id']; // Lấy user_id từ session
 
 // Kết nối cơ sở dữ liệu
@@ -71,8 +76,8 @@ foreach ($cart_items as $item) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Giỏ hàng</title>
-    <script src="scripts/giohang.js"></script>
-    <link rel="stylesheet" href="styles/giohang.css">
+    <script src="./scripts/giohang.js"></script>
+    <link rel="stylesheet" href="./styles/giohang.css">
 </head>
 <body>
     <div class="main_content">
