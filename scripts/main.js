@@ -96,10 +96,10 @@ document.addEventListener("DOMContentLoaded", function () {
     var productLinks = document.querySelectorAll('a[href^="banh.php?product_id="]');
     productLinks.forEach(function(link) {
         link.addEventListener('click', function(event) {
-            event.preventDefault();
-            var productId = new URL(link.href).searchParams.get('product_id');
-            loadContentGeneric('banh.php?product_id=' + productId); // Sửa thành URL đầy đủ
-            scrollToTop();
+            event.preventDefault(); // Ngừng tải trang thông thường
+            var productId = new URL(link.href).searchParams.get('product_id'); // Lấy product_id từ URL
+            loadContentGeneric('banh.php?product_id=' + productId); // Gọi trang banh.php với product_id
+            scrollToTop(); // Cuộn lên đầu trang
         });
     });
 
@@ -112,4 +112,26 @@ document.addEventListener("DOMContentLoaded", function () {
             scrollToTop();
         });
     });
+    const searchForm = document.querySelector('#search-form'); // Form tìm kiếm
+    const searchInput = document.querySelector('#search-input'); // Input tìm kiếm
+
+    if (searchForm && searchInput) {
+        searchForm.addEventListener('submit', function (event) {
+            event.preventDefault(); // Ngăn gửi form theo cách thông thường
+            const query = searchInput.value.trim();
+            if (query) {
+                loadContentGeneric('timkiem.php?query=' + encodeURIComponent(query)); 
+                scrollToTop();
+            }
+        });
+    }
+    var gioHangLink = document.querySelector('a[href="giohang.php"]');
+    if (gioHangLink) {
+        gioHangLink.addEventListener('click', function (event) {
+            event.preventDefault(); // Ngừng tải trang theo cách thông thường
+            loadContentGeneric('giohang.php'); // Gọi trang giohang.php
+            scrollToTop(); // Cuộn lên đầu trang
+        });
+    }
+
 });
