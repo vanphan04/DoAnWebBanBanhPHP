@@ -133,5 +133,13 @@ document.addEventListener("DOMContentLoaded", function () {
             scrollToTop(); // Cuộn lên đầu trang
         });
     }
+    var linkThongtin = document.querySelector('a[href="thongtinuser.php"]');
+    if (linkThongtin) {
+        linkThongtin.addEventListener('click', function (event) {
+            event.preventDefault(); // Ngừng tải trang theo cách thông thường
+            loadContentGeneric('thongtinuser.php'); // Gọi trang giohang.php
+            scrollToTop(); // Cuộn lên đầu trang
+        });
+    }
 
 });
