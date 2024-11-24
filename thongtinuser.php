@@ -15,6 +15,11 @@ $stmt->bindParam(':id', $_SESSION['user_id'], PDO::PARAM_INT);
 $stmt->execute();
 $user = $stmt->fetch(PDO::FETCH_ASSOC);
 
+// Kiểm tra và thay thế NULL bằng chuỗi rỗng
+$username = isset($user['username']) ? htmlspecialchars($user['username']) : '';
+$email = isset($user['email']) ? htmlspecialchars($user['email']) : '';
+$phone = isset($user['phone']) ? htmlspecialchars($user['phone']) : '';
+$address = isset($user['address']) ? htmlspecialchars($user['address']) : '';
 ?>
 
 <!DOCTYPE html>
@@ -34,19 +39,19 @@ $user = $stmt->fetch(PDO::FETCH_ASSOC);
         <form id="userInfoForm" action="#" method="POST">
             <div class="form-group">
                 <label for="name">Họ và Tên</label>
-                <input type="text" id="name" name="name" value="<?php echo htmlspecialchars($user['username']); ?>" required>
+                <input type="text" id="name" name="name" value="<?php echo $username; ?>" required>
             </div>
             <div class="form-group">
                 <label for="email">Email</label>
-                <input type="email" id="email" name="email" value="<?php echo htmlspecialchars($user['email']); ?>" required>
+                <input type="email" id="email" name="email" value="<?php echo $email; ?>" required>
             </div>
             <div class="form-group">
                 <label for="phone">Số Điện Thoại</label>
-                <input type="text" id="phone" name="phone" value="<?php echo htmlspecialchars($user['phone']); ?>">
+                <input type="text" id="phone" name="phone" value="<?php echo $phone; ?>">
             </div>
             <div class="form-group">
                 <label for="address">Địa Chỉ</label>
-                <input type="text" id="address" name="address" value="<?php echo htmlspecialchars($user['address'] ?? ''); ?>">
+                <input type="text" id="address" name="address" value="<?php echo $address; ?>">
             </div>
             <button type="submit">Cập Nhật Thông Tin</button>
         </form>
