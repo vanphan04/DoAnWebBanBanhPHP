@@ -79,6 +79,28 @@ button:hover {
 button:active {
     background-color: #004085;
 }
+/* Nút đăng xuất */
+.logout-btn {
+    width: 100%;
+    padding: 12px;
+    background-color: #dc3545; /* Màu đỏ */
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-top: 20px; /* Khoảng cách từ form trước đó */
+}
+
+.logout-btn:hover {
+    background-color: #c82333; /* Màu đỏ đậm khi hover */
+}
+
+.logout-btn:active {
+    background-color: #bd2130; /* Màu đỏ khi bấm */
+}
+
 
 /* Responsive: Điều chỉnh lại kích thước trên thiết bị di động */
 @media (max-width: 480px) {
