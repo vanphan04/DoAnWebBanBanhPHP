@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<?php 
-require('includes/header.php'); 
+<?php
+require('includes/header.php');
 require('config.php');
 ?>
 
 
-<body onload="myFunction()"> 
+<body onload="myFunction()">
     <div id="loader"></div>
     <div id="myDiv" style="display:none;">
         <div class="frm-main">
@@ -21,14 +21,14 @@ require('config.php');
                             <i class="fa fa-bars"></i>
                         </div>
                         <ul class="mainmenu">
-                        <li>
-                            <form action="timkiem.php" method="get" id="search-form" class="search-form" onsubmit="closeMenu()">
-                                <input type="text" name="query" id="search-input" placeholder="Tìm kiếm..." required>
-                                <button type="submit">
-                                    <i class="fa fa-search"></i>
-                                </button>
-                            </form>
-                        </li>
+                            <li>
+                                <form action="timkiem.php" method="get" id="search-form" class="search-form" onsubmit="closeMenu()">
+                                    <input type="text" name="query" id="search-input" placeholder="Tìm kiếm..." required>
+                                    <button type="submit">
+                                        <i class="fa fa-search"></i>
+                                    </button>
+                                </form>
+                            </li>
                             <li>
                                 <a href="index.php" id="home-link">TRANG CHỦ</a>
                             </li>
@@ -36,23 +36,23 @@ require('config.php');
                                 <div><a href="#" onclick="closeMenu()">MENU BÁNH</a></div>
                                 <span class="menu_danhsach"></span>
                                 <?php
-                                    $conn = connectDatabase();
+                                $conn = connectDatabase();
 
-                                    // Truy vấn cơ sở dữ liệu để lấy danh sách các danh mục
-                                    $sql = "SELECT id, name FROM categories";  // Truy vấn lấy tên và id các danh mục
-                                    $result = $conn->query($sql);  // Thực hiện truy vấn
+                                // Truy vấn cơ sở dữ liệu để lấy danh sách các danh mục
+                                $sql = "SELECT id, name FROM categories";  // Truy vấn lấy tên và id các danh mục
+                                $result = $conn->query($sql);  // Thực hiện truy vấn
 
-                                    // Kiểm tra nếu có danh mục trả về
-                                    if ($result->rowCount() > 0) {
-                                        // Duyệt qua từng danh mục và hiển thị trên giao diện
-                                        echo '<ul>';
-                                        while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
-                                            echo '<li><a onclick="closeMenu()" href="dsBanh.php?category_id=' . htmlspecialchars($row['id']) . '">' . htmlspecialchars($row['name']) . '</a></li>';
-                                        }
-                                        echo '</ul>';
-                                    } else {
-                                        echo '<ul><li>Không có danh mục nào.</li></ul>';
+                                // Kiểm tra nếu có danh mục trả về
+                                if ($result->rowCount() > 0) {
+                                    // Duyệt qua từng danh mục và hiển thị trên giao diện
+                                    echo '<ul>';
+                                    while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
+                                        echo '<li><a onclick="closeMenu()" href="dsBanh.php?category_id=' . htmlspecialchars($row['id']) . '">' . htmlspecialchars($row['name']) . '</a></li>';
                                     }
+                                    echo '</ul>';
+                                } else {
+                                    echo '<ul><li>Không có danh mục nào.</li></ul>';
+                                }
                                 ?>
                             </div>
                             <li><a href="tintuc.php" onclick="closeMenu()">TIN TỨC</a></li>
@@ -83,30 +83,30 @@ require('config.php');
                     <div class="slider-wrapper">
                         <button id="prev-slide" class="slide-button material-symbols-rounded">chevron_left</button>
                         <div class="image-list">
-                        <?php
-                                // Truy vấn lấy 9 ảnh ngẫu nhiên từ các sản phẩm khác nhau
-                                $sql = "
+                            <?php
+                            // Truy vấn lấy 9 ảnh ngẫu nhiên từ các sản phẩm khác nhau
+                            $sql = "
                                     SELECT product_id, image
                                     FROM product_images
                                     GROUP BY product_id
                                     ORDER BY RAND()
                                     LIMIT 9
                                 ";
-                                $stmt = $conn->query($sql);
+                            $stmt = $conn->query($sql);
 
-                                // Kiểm tra nếu có dữ liệu trả về
-                                if ($stmt->rowCount() > 0) {
-                                    // Duyệt qua các ảnh và hiển thị chúng
-                                    while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
-                                        // Đảm bảo tên ảnh được thoát để tránh các vấn đề bảo mật
-                                        $image_url = htmlspecialchars($row['image']);
-                                        $product_id = $row['product_id'];  // Lấy product_id để sử dụng trong URL
-                                        echo '<a href="banh.php?product_id=' . $product_id . '"><img src="' . $image_url . '" alt="product-image" class="image-item"></a>';
-                                    }
-                                } else {
-                                    // Nếu không có ảnh nào
-                                    echo '<p>No images available.</p>';
+                            // Kiểm tra nếu có dữ liệu trả về
+                            if ($stmt->rowCount() > 0) {
+                                // Duyệt qua các ảnh và hiển thị chúng
+                                while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+                                    // Đảm bảo tên ảnh được thoát để tránh các vấn đề bảo mật
+                                    $image_url = htmlspecialchars($row['image']);
+                                    $product_id = $row['product_id'];  // Lấy product_id để sử dụng trong URL
+                                    echo '<a href="banh.php?product_id=' . $product_id . '"><img src="' . $image_url . '" alt="product-image" class="image-item"></a>';
                                 }
+                            } else {
+                                // Nếu không có ảnh nào
+                                echo '<p>No images available.</p>';
+                            }
                             ?>
                         </div>
                         <button id="next-slide" class="slide-button material-symbols-rounded">chevron_right</button>
@@ -135,38 +135,38 @@ require('config.php');
                         <h1>Sản Phẩm Mới</h1>
                     </div>
                     <div class="dsSP">
-                    <?php
-                            // Truy vấn lấy 8 sản phẩm ngẫu nhiên từ bảng products và product_images
-                            $sql = "SELECT p.id, p.name, pi.image, p.price 
+                        <?php
+                        // Truy vấn lấy 8 sản phẩm ngẫu nhiên từ bảng products và product_images
+                        $sql = "SELECT p.id, p.name, pi.image, p.price 
                                     FROM products p
                                     JOIN product_images pi ON p.id = pi.product_id
                                     GROUP BY p.id
                                     ORDER BY RAND() 
                                     LIMIT 8";  // Lấy 8 sản phẩm ngẫu nhiên
-                            $stmt = $conn->query($sql);
+                        $stmt = $conn->query($sql);
 
-                            // Kiểm tra nếu có dữ liệu trả về
-                            if ($stmt->rowCount() > 0) {
-                                // Duyệt qua các sản phẩm và hiển thị chúng
-                                while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
-                                    // Đảm bảo tên ảnh được thoát để tránh các vấn đề bảo mật
-                                    $image_url = htmlspecialchars($row['image']);
-                                    $product_name = htmlspecialchars($row['name']);
-                                    $product_price = number_format($row['price'], 0, ',', '.');  // Định dạng giá thành tiền
-                                    $product_id = $row['id'];  // Lấy product_id
+                        // Kiểm tra nếu có dữ liệu trả về
+                        if ($stmt->rowCount() > 0) {
+                            // Duyệt qua các sản phẩm và hiển thị chúng
+                            while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+                                // Đảm bảo tên ảnh được thoát để tránh các vấn đề bảo mật
+                                $image_url = htmlspecialchars($row['image']);
+                                $product_name = htmlspecialchars($row['name']);
+                                $product_price = number_format($row['price'], 0, ',', '.');  // Định dạng giá thành tiền
+                                $product_id = $row['id'];  // Lấy product_id
 
-                                    echo '<div>
+                                echo '<div>
                                             <a href="banh.php?product_id=' . $product_id . '">
                                                 <img src="' . $image_url . '" height="400" />
                                                 <h2>' . $product_name . '</h2>
-                                                <p>' . $product_price ." đ". '</p>
+                                                <p>' . $product_price . " đ" . '</p>
                                             </a>
                                         </div>';
-                                }
-                            } else {
-                                // Nếu không có sản phẩm nào
-                                echo '<p>No products available.</p>';
                             }
+                        } else {
+                            // Nếu không có sản phẩm nào
+                            echo '<p>No products available.</p>';
+                        }
                         ?>
 
                     </div>
@@ -186,8 +186,10 @@ require('config.php');
                         phố Hồ Chí Minh cấp lần đầu ngày 16/04/2019.</p>
                 </div>
                 <div class="ft-down">
-                    Copyright&copy; Vũ Thị Hương Giang<br /> MSSV: DH52110848<br /> Lớp: D21_TH11
+                    <p>Copyright&copy; Vũ Thị Hương Giang<br /> MSSV: DH52110848<br /> Lớp: D21_TH11</p>
+                    <p>Copyright&copy; Phan Thành Văn<br /> MSSV: DH52104782<br /> Lớp: D21_TH04</p>
                 </div>
+
                 <div class="action-buttons">
                     <a href="tel:0985344133" class="contact-link phone-icon" id="tel">
                         <i class="fas fa-phone"></i>
