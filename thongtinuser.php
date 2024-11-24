@@ -1,6 +1,7 @@
 <?php
 session_start();
 include './config.php';
+
 // Kiểm tra nếu người dùng đã đăng nhập
 if (!isset($_SESSION['user_id'])) {
     header('Location: dangnhap.php');
@@ -13,6 +14,7 @@ $stmt = $conn->prepare("SELECT * FROM users WHERE id = :id");
 $stmt->bindParam(':id', $_SESSION['user_id'], PDO::PARAM_INT);
 $stmt->execute();
 $user = $stmt->fetch(PDO::FETCH_ASSOC);
+
 ?>
 
 <!DOCTYPE html>
@@ -47,6 +49,9 @@ $user = $stmt->fetch(PDO::FETCH_ASSOC);
                 <input type="text" id="address" name="address" value="<?php echo htmlspecialchars($user['address'] ?? ''); ?>">
             </div>
             <button type="submit">Cập Nhật Thông Tin</button>
+        </form>
+        <form action="dangxuat.php" method="POST">
+            <button type="submit" name="logout" class="logout-btn">Đăng Xuất</button>
         </form>
     </div>
 </body>

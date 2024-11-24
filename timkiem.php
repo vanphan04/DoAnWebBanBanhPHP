@@ -38,7 +38,7 @@ if (isset($_GET['query'])) {
         }
         echo "</div>";
     } else {
-        echo "<h3>Không tìm thấy sản phẩm phù hợp.</h3>";
+        echo "<h3 style='min-height: 500px;'>Không tìm thấy sản phẩm phù hợp.</h3>";
     }
     echo "</div>";
 } else {

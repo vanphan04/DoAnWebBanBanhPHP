@@ -66,21 +66,19 @@ require('config.php');
                             </li>
                             <li>
                                 <?php
-                                if (isset($_SESSION['user_id'])) {
+                                
+                                // Kiểm tra xem session có tồn tại không
+                                if (isset($_SESSION['user_id']) && $_SESSION['user_id'] !== null) {
                                     // Nếu người dùng đã đăng nhập, hiển thị icon tài khoản và trang thông tin người dùng
                                     echo '<a href="thongtinuser.php" onclick="closeMenu()" class="icon-link">
-                <i class="fa fa-user"></i>
-              </a>';
+        <i class="fa fa-user"></i></a>';
                                 } else {
                                     // Nếu chưa đăng nhập, hiển thị liên kết đăng nhập
                                     echo '<a href="dangnhap.php" onclick="closeMenu()" class="icon-link">
-                <i class="fa fa-user"></i> Đăng nhập
-              </a>';
+        <i class="fa fa-user"></i></a>';
                                 }
                                 ?>
                             </li>
-
-
                         </ul>
                     </div>
                 </div>
