@@ -541,6 +541,9 @@ body {
 }
 
 .ft-down {
+    display: flex;
+    justify-content: space-evenly; /* Căn đều các phần tử ngang nhau */
+    align-items: center; /* Căn giữa theo chiều dọc */
     text-align: center;
     position: fixed;
     bottom: 0;
@@ -550,6 +553,12 @@ body {
     color: #fff;
     padding: 10px 0;
 }
+
+.ft-down p {
+    margin: 0; /* Loại bỏ khoảng cách giữa các phần tử p */
+    padding: 0 10px; /* Thêm khoảng cách giữa các phần tử */
+}
+
 
 .action-buttons {
     position: fixed;
