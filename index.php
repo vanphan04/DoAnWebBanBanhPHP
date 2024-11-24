@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -62,10 +65,21 @@ require('config.php');
                                 </a>
                             </li>
                             <li>
-                                <a href="dangnhap.php" onclick="closeMenu()" class="icon-link">
-                                    <i class="fa fa-user"></i>
-                                </a>
+                                <?php
+                                if (isset($_SESSION['user_id'])) {
+                                    // Nếu người dùng đã đăng nhập, hiển thị icon tài khoản và trang thông tin người dùng
+                                    echo '<a href="thongtinuser.php" onclick="closeMenu()" class="icon-link">
+                <i class="fa fa-user"></i>
+              </a>';
+                                } else {
+                                    // Nếu chưa đăng nhập, hiển thị liên kết đăng nhập
+                                    echo '<a href="dangnhap.php" onclick="closeMenu()" class="icon-link">
+                <i class="fa fa-user"></i> Đăng nhập
+              </a>';
+                                }
+                                ?>
                             </li>
+
 
                         </ul>
                     </div>

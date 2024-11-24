@@ -1,71 +1,105 @@
-/* Đặt font chữ và căn chỉnh tổng thể */
-body {
-    font-family: Arial, sans-serif;
-    background-color: #f4f4f9;
-    margin: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-}
 
 /* Container chính */
-.container {
+.thongtin {
     background-color: #fff;
-    padding: 20px 30px;
+    padding: 30px;
     border-radius: 8px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    max-width: 400px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
     width: 100%;
     text-align: center;
+    box-sizing: border-box;
 }
 
 /* Tiêu đề */
-.container h2 {
-    margin-bottom: 20px;
+.thongtin h2 {
+    margin-bottom: 25px;
+    font-size: 24px;
+    font-weight: 600;
     color: #333;
+    text-transform: uppercase;
+    letter-spacing: 1px;
 }
 
 /* Nhóm form */
 .form-group {
-    margin-bottom: 15px;
+    margin-bottom: 20px;
     text-align: left;
 }
 
 /* Label */
 .form-group label {
     display: block;
-    margin-bottom: 5px;
-    font-weight: bold;
+    margin-bottom: 8px;
+    font-weight: 600;
     color: #555;
+    font-size: 14px;
 }
 
 /* Input */
 .form-group input {
     width: 100%;
-    padding: 10px;
+    padding: 12px;
     border: 1px solid #ddd;
-    border-radius: 5px;
+    border-radius: 8px;
     font-size: 16px;
+    box-sizing: border-box;
+    background-color: #f9f9f9;
+    transition: all 0.3s ease;
 }
 
-/* Input: trạng thái chỉ đọc */
-.form-group input[readonly] {
-    background-color: #f9f9f9;
+.form-group input:focus {
+    border-color: #007bff;
+    background-color: #fff;
+    outline: none;
+}
+
+/* Định dạng cho input khi không có giá trị */
+.form-group input:placeholder-shown {
+    background-color: #fff;
 }
 
 /* Button */
 button {
     width: 100%;
-    padding: 10px;
+    padding: 12px;
     background-color: #007bff;
     color: white;
     border: none;
-    border-radius: 5px;
+    border-radius: 8px;
     font-size: 16px;
     cursor: pointer;
+    transition: background-color 0.3s ease;
 }
 
 button:hover {
     background-color: #0056b3;
+}
+
+/* Hiệu ứng hover cho button */
+button:active {
+    background-color: #004085;
+}
+
+/* Responsive: Điều chỉnh lại kích thước trên thiết bị di động */
+@media (max-width: 480px) {
+    .thongtin {
+        padding: 20px;
+        max-width: 100%;
+    }
+
+    .thongtin h2 {
+        font-size: 20px;
+    }
+
+    .form-group label {
+        font-size: 13px;
+    }
+
+    .form-group input {
+        font-size: 14px;
+    }
+
+    button {
+        font-size: 14px;
+    }
 }
