@@ -22,7 +22,6 @@
     border-radius: 7px;
     border: 1px solid #777;
     margin-bottom: 15px;
-    border-radius: 7px;
 }
 .login .submit {
     font-size: 15px;
@@ -107,4 +106,59 @@
     background-repeat: no-repeat;
     background-size: 35px;
     background-position: 3px;
+}
+.checkout {
+    margin: 20px; /* Thêm margin 4 phía */
+}
+/* Các phần tử mới cho trang Đăng ký */
+.checkout__input {
+    margin-bottom: 20px;
+}
+.checkout__input p {
+    font-weight: bold;
+}
+.checkout__input input {
+    width: 100%;
+    padding: 10px;
+    font-size: 15px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+.checkout__input .error-message {
+    color: red;
+    font-size: 12px;
+}
+
+.checkout__order {
+    margin-top: 20px;
+}
+
+.site-btn {
+    padding: 12px;
+    font-size: 16px;
+    font-weight: bold;
+    width: 100%;
+    background-color: #52cfdf;
+    border: none;
+    color: white;
+    border-radius: 7px;
+    cursor: pointer;
+}
+.site-btn:hover {
+    background-color: #4bb3b8;
+}
+
+.newcreat-btn {
+    padding: 12px;
+    font-size: 16px;
+    font-weight: bold;
+    width: 100%;
+    background-color: #4caf50;
+    border: none;
+    color: white;
+    border-radius: 7px;
+    cursor: pointer;
+}
+.newcreat-btn:hover {
+    background-color: #45a049;
 }
