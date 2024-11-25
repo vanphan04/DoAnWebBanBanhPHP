@@ -74,19 +74,22 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         <div class="error-message" id="matkhauErrorMessage"><?php echo $passwordError; ?></div>
                     </div>
                 </div>
-                <div class="checkout__input__checkbox">
-                    <label for="diff-acc">
-                        <input type="checkbox" id="diff-acc"> Ghi nhớ mật khẩu
-                        <span class="checkmark"></span>
-                    </label>
-                    <a href="#">Quên mật khẩu</a>
-                </div>
                 <div class="checkout__order">
                     <button type="submit" class="site-btn">Đăng nhập</button>
                     <p>hoặc</p>
                     <button type="button" class="newcreat-btn" onclick="dangki()">Tạo tài khoản</button>
                 </div>
             </form>
+            <div class="social-login">
+            <form id="socialLoginForm">
+                <button type="button" class="social-login-btn facebook-btn" onclick="loginWithFacebook()">
+                    Đăng nhập bằng Facebook
+                </button>
+                <button type="button" class="social-login-btn google-btn" onclick="loginWithGoogle()">
+                    Đăng nhập bằng Google
+                </button>
+            </form>
+        </div>
         </div>
     </section>
 
