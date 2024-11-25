@@ -53,7 +53,6 @@ $address = isset($user['address']) ? htmlspecialchars($user['address']) : '';
                 <label for="address">Địa Chỉ</label>
                 <input type="text" id="address" name="address" value="<?php echo $address; ?>">
             </div>
-            <button type="submit">Cập Nhật Thông Tin</button>
         </form>
         <form action="dangxuat.php" method="POST">
             <button type="submit" name="logout" class="logout-btn">Đăng Xuất</button>
